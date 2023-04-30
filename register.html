@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Feedback System</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  </head>
+  <body style="background: #d5d5d5;">
+
+    <!-- Navbar -->
+      <section>
+      <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Feedback system</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item me-3">
+              <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li>
+              <a class="btn btn-outline-success" href="login.html">Login</a>
+            </li>       
+          </ul>           
+        </div>
+      </div>
+    </nav>
+    </section>
+
+    <!-- login form -->
+    <section>
+      <div class="container mt-5 mb-3">
+        <div class="row">
+          <div class="col-md-6 mx-auto border p-5 shadow bg-white rounded">
+            <form>
+              <div class="mb-3">
+                <label for="USN" class="form-label">USN</label>
+                <input type="text" class="form-control text-uppercase" id="txtUsn" placeholder="USN">
+              </div>
+
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="txtName" placeholder="Full Name">
+              </div>
+
+              <div class="mb-3">
+                <label for="fullName" class="form-label">College Name</label>
+                <input type="text" class="form-control" id="txtCollegeName" placeholder="College Name">
+              </div>
+
+              <div class="mb-3">
+                <label>Course</label>
+                <select class="form-control" id="selCourse">
+                  <option value="">Please Select Course</option>
+                  <option value="MCA">MCA</option>
+                  <option value="MBA">MBA</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="Address" class="form-label">Address</label>
+                <textarea class="form-control" id="txtAddress" rows="3" placeholder="Address"></textarea>
+              </div>
+
+              <!-- <div class="mb-3"> -->
+                <!-- <label for="Contact" class="form-label">Contact Number</label> -->
+                <!-- <input type="text" class="form-control" id="txtContactNo" placeholder="Contact No" maxlength="10"> -->
+              <!-- </div> -->
+  
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="txtEmail" placeholder="usn@students.git.edu">
+              </div>
+
+              <div class="mb-3">
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="txtPassword" placeholder="password">
+                <span style="color: red; font-size: 13px;">Password Format(1 Number, 1 Uppercase, 1 Lowercase, 1 Special Symbol and atleast 8 Length)</span>
+              </div>
+              <div class="mb-3">
+                <label for="inputPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password">
+              </div>
+              <div class="mb-3 text-center">
+                <button class="btn btn-primary" id="btnRegister" type="button">Register</button>
+              </div>
+            </form>
+            <div class="text-center">
+              <a href="login.html">Login</a>            
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+      <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
+
+<script type="text/javascript">
+  const emailRegex = '[a-zA-Z0-9]+\@students.git.edu';
+
+  $("#btnRegister").click(function(){
+    if($("#txtUsn").val() === ""){
+      alert("Please Enter Your USN");
+      $("#txtUsn").focus();
+      return false;  
+    }
+
+    let usn = $("#txtUsn").val().substring(0,3);
+
+    if(!usn.includes("2GI")) {
+      alert("Please enter valid USN");
+      return false;
+    }
+
+    if($("#txtName").val() === ""){
+      alert("Please Enter Your Name");
+      $("#txtName").focus();
+      return false;  
+    }
+
+    if($("#txtCollegeName").val() === ""){
+      alert("Please Enter Your College Name");
+      $("#txtCollegeName").focus();
+      return false;  
+    }
+
+    if($("#selCourse").val() === ""){
+      alert("Please Select Course Name");
+      $("#selCourse").focus();
+      return false;  
+    }
+
+     if($("#txtAddress").val() === ""){
+      alert("Please Enter Your Address");
+      $("#txtAddress").focus();
+      return false;  
+    }
+     if($("#txtContactNo").val() === ""){
+      alert("Please Enter Your Contact No ");
+      $("#txtContactNo").focus();
+      return false;  
+    }
+    if($("#txtEmail").val() === ""){
+      alert("Please Enter Your Email");
+      $("#txtEmail").focus();
+      return false;  
+    }
+
+    if (!(/^([A-Za-z0-9_\-\.])+\@([students])+\.(git)+\.(edu)$/.test($("#txtEmail").val()))) {
+        alert("Please Enter valid email")
+        return false; 
+    }
+    if($("#txtPassword").val() === ""){
+      alert("Please Enter Password");
+      $("#txtPassword").focus();
+      return false;  
+    }
+
+    pass = document.getElementById("txtPassword").value;
+    regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (regex.exec(pass) == null) {
+      alert('Please Enter Valid Password Format');
+      return false;
+    }
+
+    if($("#txtConfirmPassword").val() === ""){
+      alert("Please Enter Confirm Password");
+      $("#txtConfirmPassword").focus();
+      return false;  
+    }
+
+    if($("#txtPassword").val() !== $("#txtConfirmPassword").val()){
+      alert("Password do not match")
+      return false;  
+    }
+
+
+    let formData = new FormData();
+    formData.append("txtUsn", $("#txtUsn").val());
+    formData.append("txtName", $("#txtName").val());
+    formData.append("txtCollegeName", $("#txtCollegeName").val());
+    formData.append("selCourse", $("#selCourse").val());
+    formData.append("txtAddress", $("#txtAddress").val());
+    formData.append("txtContactNo", $("#txtContactNo").val());
+    formData.append("txtEmail", $("#txtEmail").val());
+    formData.append("txtPassword", $("#txtPassword").val());
+    formData.append("txtRole", "Student");
+    formData.append("action", 'register');
+    $.ajax({ 
+      url: "backend/process_web.php",
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+
+        if(response == 1){
+
+          alert("Registered Successfully");
+          $("#btn_register").prop("disabled", false);
+          $("#btn_register").text('Send Message');
+          $("#txtUsn").val("");
+          $("#txtName").val("");
+          $("#txtCollegeName").val("");
+          $("#txtAddress").val("");
+          $("#txtContactNo").val("");
+          $("#txtEmail").val("");
+          $("#txtPassword").val("");
+          $("#txtConfirmPassword").val("");   
+          $("#txtRole").val("");
+          $("#txtUsn").focus();
+        }else if(response == 11){
+          alert("Email does not exists in database")
+        }else{
+          alert("Email already exists");
+        }
+      }
+
+    });
+  })
+</script>
